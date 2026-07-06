@@ -1,12 +1,8 @@
-# TODO — União Motos (Premium Awwwards-Grade)
-
-## Planejado (após aprovação)
-
-- [x] 1) Implementar “motor de motion” baseado em atributos (refatorar `PremiumMotion.tsx`).
-- [x] 2) Atualizar marcação em `Hero.tsx` para reveal/máscaras premium mantendo conteúdo.
-- [ ] 3) Refinar Navbar (acessibilidade: trap de foco / aria-modal + overlay blur/noise).
-- [ ] 4) Refinar Footer (assinatura premium e microinterações).
-- [ ] 5) Ajustar/estender `src/styles.css` (utilitários de máscara/wipe, camadas de profundidade, foco visível).
-- [ ] 6) Rechecar SEO/A11y/Performance com build + lint.
-- [ ] 7) Abrir auditoria final com Nota atual / Nota após / melhorias / evolução.
+- [ ] Analyze Navbar mobile menu structure (Navbar.tsx)
+- [ ] Identify z-index/position/overflow issues causing header/logo/nav to hide on small screens
+- [ ] Implement fix: render mobile menu as fixed full-screen overlay above content; ensure logo+close+links+CTA+Agendar
+- [ ] Keep desktop layout unchanged
+- [ ] Add/adjust CSS/Tailwind classes to ensure correct stacking (z-index) and viewport coverage (top/bottom/left/right)
+- [ ] Build/test (npm run build)
+- [ ] Document which files were changed and how to test on 360px width
 

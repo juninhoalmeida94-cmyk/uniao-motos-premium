@@ -99,7 +99,7 @@ export function Navbar() {
       {open && (
         <div
           id="mobile-navigation"
-          className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col overflow-y-auto bg-black sm:top-20 lg:hidden"
+          className="fixed inset-0 z-[9999] flex flex-col overflow-y-auto bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/75 lg:hidden"
         >
           <ul className="flex flex-1 flex-col gap-1 p-6">
             {LINKS.map((l) => (
