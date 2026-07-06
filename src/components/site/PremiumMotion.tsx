@@ -1,16 +1,6 @@
 import { useEffect } from "react";
 
-const REVEAL_SELECTOR = [
-  "main > section:not(#inicio) .font-mono-tech.text-primary",
-  "main > section:not(#inicio) h2",
-  "main > section:not(#inicio) .text-section + p",
-  ".card-premium",
-  "#servicos .grid > a",
-  "main section ol > li",
-  "main section figure",
-  "main section iframe",
-  "main > section:not(#inicio) .group",
-].join(",");
+type RevealKind = "fadeUp" | "mask" | "fade";
 
 export function PremiumMotion() {
   useEffect(() => {
@@ -19,11 +9,14 @@ export function PremiumMotion() {
 
     document.documentElement.classList.add("motion-ready");
 
-    const elements = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
+    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-um-reveal]"));
+
     const groups = new Map<Element, number>();
 
     elements.forEach((element) => {
+      const kind = (element.dataset.umReveal ?? "fadeUp") as RevealKind;
       element.classList.add("premium-reveal");
+      element.dataset.umRevealKind = kind;
 
       const parent = element.parentElement;
       if (!parent) return;
@@ -46,22 +39,34 @@ export function PremiumMotion() {
     elements.forEach((element) => observer.observe(element));
 
     const hero = document.querySelector<HTMLElement>("#inicio");
-    let frame = 0;
+    let raf = 0;
+
     const updateParallax = () => {
-      frame = 0;
-      if (!hero || window.scrollY > window.innerHeight * 1.2) return;
-      hero.style.setProperty("--hero-shift", `${Math.min(window.scrollY * 0.16, 90)}px`);
+      raf = 0;
+      if (!hero) return;
+      const y = window.scrollY;
+      if (y <= 0) {
+        hero.style.setProperty("--hero-shift", `0px`);
+        return;
+      }
+      if (y > window.innerHeight * 1.2) return;
+      hero.style.setProperty("--hero-shift", `${Math.min(y * 0.14, 84)}px`);
     };
+
     const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateParallax);
+      if (raf) return;
+      raf = window.requestAnimationFrame(updateParallax);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    onScroll();
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
       document.documentElement.classList.remove("motion-ready");
     };
   }, []);

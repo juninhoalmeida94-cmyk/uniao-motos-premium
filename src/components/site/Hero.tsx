@@ -29,20 +29,33 @@ export function Hero() {
       <div className="absolute inset-0 grid-lines opacity-40" aria-hidden="true" />
 
       <div className="relative mx-auto w-full max-w-7xl px-4 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 md:px-8 lg:pb-24 lg:pt-40 xl:pb-28">
-        <div className="hero-enter hero-delay-1 mb-6 flex items-center gap-3 font-mono-tech text-primary sm:mb-8 sm:gap-4">
+        <div
+          data-um-reveal="fadeUp"
+          className="hero-enter hero-delay-1 mb-6 flex items-center gap-3 font-mono-tech text-primary sm:mb-8 sm:gap-4"
+        >
           <span className="h-px w-8 bg-primary sm:w-12" />
           Morumbi · Paranavaí — PR
         </div>
-        <h1 id="titulo-principal" className="hero-enter hero-delay-2 text-hero max-w-5xl">
+        <h1
+          data-um-reveal="mask"
+          id="titulo-principal"
+          className="hero-enter hero-delay-2 text-hero max-w-5xl"
+        >
           Mecânica de motos que resolve <br />
           <span className="text-primary">o problema</span> da sua moto.
         </h1>
-        <p className="hero-enter hero-delay-3 mt-8 max-w-2xl text-lg sm:text-xl text-white/75 leading-relaxed">
+        <p
+          data-um-reveal="fadeUp"
+          className="hero-enter hero-delay-3 mt-8 max-w-2xl text-lg sm:text-xl text-white/75 leading-relaxed"
+        >
           Oficina no Morumbi, em Paranavaí, com diagnóstico preciso, execução técnica e entrega no
           prazo.
         </p>
 
-        <div className="hero-enter hero-delay-4 mt-8 flex flex-wrap gap-2 sm:mt-10 sm:gap-2.5">
+        <div
+          data-um-reveal="fade"
+          className="hero-enter hero-delay-4 mt-8 flex flex-wrap gap-2 sm:mt-10 sm:gap-2.5"
+        >
           {PILLS.map((p, index) => (
             <span
               key={p.label}
@@ -54,7 +67,10 @@ export function Hero() {
           ))}
         </div>
 
-        <div className="hero-enter hero-delay-5 mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row">
+        <div
+          data-um-reveal="mask"
+          className="hero-enter hero-delay-5 mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row"
+        >
           <a
             href={whatsappLink()}
             target="_blank"
@@ -73,7 +89,10 @@ export function Hero() {
           </a>
         </div>
 
-        <dl className="hero-enter hero-delay-6 mt-14 grid grid-cols-2 gap-x-5 gap-y-8 border-t border-white/10 pt-8 sm:mt-16 sm:grid-cols-4 sm:gap-x-6 sm:pt-10 lg:mt-20">
+        <dl
+          data-um-reveal="fadeUp"
+          className="hero-enter hero-delay-6 mt-14 grid grid-cols-2 gap-x-5 gap-y-8 border-t border-white/10 pt-8 sm:mt-16 sm:grid-cols-4 sm:gap-x-6 sm:pt-10 lg:mt-20"
+        >
           {[
             {
               v: (

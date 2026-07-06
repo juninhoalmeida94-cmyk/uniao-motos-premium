@@ -1,4 +1,4 @@
-import logo from "@/assets/logo-uniao-motos.png";
+import logo from "@/assets/logo-uniao-motos.webp";
 import instagram from "@/assets/icons8-instagram-50.png";
 import whatsapp from "@/assets/icons8-whatsapp-50.png";
 import {

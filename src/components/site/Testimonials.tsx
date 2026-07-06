@@ -34,6 +34,7 @@ export function Testimonials() {
   const [ref, api] = useEmblaCarousel({ loop: true, align: "start" });
   const paused = useRef(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const togglePaused = () => {
     paused.current = !paused.current;
@@ -46,6 +47,16 @@ export function Testimonials() {
       if (!paused.current) api.scrollNext();
     }, 6000);
     return () => window.clearInterval(id);
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setSelectedIndex(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
 
   return (
@@ -133,6 +144,22 @@ export function Testimonials() {
               </figure>
             ))}
           </div>
+        </div>
+
+        <div className="mt-6 flex items-center justify-center gap-2 sm:hidden" role="tablist" aria-label="Selecionar depoimento">
+          {REVIEWS.map((r, i) => (
+            <button
+              key={r.name}
+              type="button"
+              role="tab"
+              aria-selected={selectedIndex === i}
+              aria-label={`Ver depoimento de ${r.name}`}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                selectedIndex === i ? "w-6 bg-primary" : "w-2 bg-white/25"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import about from "@/assets/about-shop-new.png";
+import about from "@/assets/about-shop-new.webp";
 import { Zap, Users, ShieldCheck, Wrench, Handshake, FileText } from "lucide-react";
 
 const BADGES = [
